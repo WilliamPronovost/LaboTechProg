@@ -38,17 +38,29 @@ void* queue_pop(Queue* q);
 * une propriete de type QNode qui sera nommer revPath. Cette derniere, sera utiliser pour rebrousser chemin lorsque nous ferons l'algorithme bfs.
 */
 
+typedef struct Node Node;
 
+struct Node {
+	void* data;
+	Node* next;
+	Node* prev;
+	Node* adj[UINT8_MAX];
+	uint8_t len;
+	QNode revPath;
+};
+
+typedef Node Queue;
 
 /*
 * Creer un Noeud, assigner lui la valeur de data, faite un memset 0 sur adj, visited a faux, len a 0, allouer de la memoire pour le QNode et assurer vous de mettre la propiete prev de QNode a NULL.
 * Retourner ensuite le pointeur vers le Node.
 */
+
 Node* create_node(void* data);
 
-/*
-* Ajouter le node dans la liste d'adjacence de root.
-*/
+
+// * Ajouter le node dans la liste d'adjacence de root.
+
 void add_adjacent_node(Node* root, Node* node);
 
 /*
